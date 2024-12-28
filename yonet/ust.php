@@ -1,9 +1,9 @@
 <?php
 include "baglan.php";
 
-$ayar=$db->prepare("SELECT * FROM ayar");
+$ayar = $db->prepare("SELECT * FROM ayar");
 $ayar->execute();
-$ayar=$ayar->fetch(PDO::FETCH_ASSOC);
+$ayar = $ayar->fetch(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <!--
@@ -15,12 +15,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Yönetim Paneli | <?php echo $ayar['ayar_baslik']?></title>
+  <title>Yönetim Paneli | <?php echo $ayar['ayar_baslik'] ?></title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
 </head>
@@ -220,23 +222,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <li class="nav-item menu-open">
               <a href="#" class="nav-link active">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <i class="nav-icon fas fa-cubes"></i>
                 <p>
-                  Starter Pages
+                  Ürünler
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link active">
+                  <a href="urun_detay.php" class="nav-link active">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Active Page</p>
+                    <p>Yeni Ürün Ekle</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="urun_liste.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Inactive Page</p>
+                    <p>Ürün Listesi</p>
                   </a>
                 </li>
               </ul>
