@@ -71,7 +71,7 @@ $ayar = $ayar->fetch(PDO::FETCH_ASSOC);
 							<div class="up-item">
 								<div class="shopping-card">
 									<i class="flaticon-bag"></i>
-									<span>0</span>
+									<span id="SepetAdet">0</span>
 								</div>
 								<a href="#">Shopping Cart</a>
 							</div>
