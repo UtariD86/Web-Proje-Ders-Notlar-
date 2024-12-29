@@ -45,6 +45,10 @@
   <script src="dist/js/adminlte.min.js"></script>
 
   <?php
+if(strpos($_SERVER['SCRIPT_NAME'],'urun_detay.php'))
+  echo '<script src="plugins/summernote/summernote-bs4.min.js"></script>
+  <script>$(function () {$("#urun_aciklama").summernote({height: 250})})</script>';
+
   if (isset($_GET['sonuc'])) {
   ?>
     <script>

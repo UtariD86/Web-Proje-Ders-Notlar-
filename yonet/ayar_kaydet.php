@@ -52,6 +52,6 @@ ayar_madres=:ayar_madres";
     $sorgu = $db->prepare($SQL);
     $sonuc = $sorgu->execute($SQL_array);
 
-    print_r($sorgu->errorInfo());
+    //print_r($sorgu->errorInfo());
 }
 header("Location:ayar.php?sonuc=" . $sonuc);

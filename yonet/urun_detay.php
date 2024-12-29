@@ -1,12 +1,23 @@
   <?php
   include "ust.php";
 
-  if (!isset($_GET['id']))
+  if (!isset($_GET['id'])) {
     $_GET['id'] = 0;
-
-  $sorgu = $db->prepare('SELECT * FROM urun WHERE urun_id=?');
-  $sorgu->execute(array($_GET['id']));
-  $satir = $sorgu->fetch(PDO::FETCH_ASSOC);
+    $satir = array(
+      'urun_id' => 0,
+      'urun_kategori_id' => '',
+      'urun_barkod' => '',
+      'urun_adi' => '',
+      'urun_fiyat' => '',
+      'urun_indirim' => '',
+      'urun_marka' => '',
+      'urun_aciklama' => ''
+    );
+  } else {
+    $sorgu = $db->prepare('SELECT * FROM urun WHERE urun_id=?');
+    $sorgu->execute(array($_GET['id']));
+    $satir = $sorgu->fetch(PDO::FETCH_ASSOC);
+  }
   ?>
 
   <!-- Content Wrapper. Contains page content -->
@@ -23,81 +34,77 @@
           </div>
           <div class="card-body">
 
-            <form action="ayar_kaydet.php" method="POST">
+            <form action="urun_kaydet.php" method="POST">
+
+              <input type="hidden" name="urun_id" value="<?php echo $satir['urun_id'] ?>">
+
               <div class="form-group row">
-                <label for="ayar_baslik" class="col-sm-2 col-form-label">Başlık</label>
+                <label for="urun_kategori_id" class="col-sm-2 col-form-label">Kategori ID</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="ayar_baslik" name="ayar_baslik" value="<?php echo $ayar['ayar_baslik'] ?>" placeholder="Web sayfanızın başlığını giriniz">
+                  <input type="text" class="form-control" id="urun_kategori_id" name="urun_kategori_id" value="<?php echo $satir['urun_kategori_id'] ?>">
                 </div>
               </div>
 
               <div class="form-group row">
-                <label for="ayar_aciklama" class="col-sm-2 col-form-label">Açıklama</label>
+                <label for="urun_barkod" class="col-sm-2 col-form-label">Barkod</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="ayar_aciklama" name="ayar_aciklama" value="<?php echo $ayar['ayar_aciklama'] ?>" placeholder="Web sayfanızı tanıtan birkaç cümle giriniz">
+                  <input type="text" class="form-control" id="urun_barkod" name="urun_barkod" value="<?php echo $satir['urun_barkod'] ?>">
                 </div>
               </div>
 
               <div class="form-group row">
-                <label for="ayar_anahtarkelime" class="col-sm-2 col-form-label">Anahtar Kelimeler</label>
+                <label for="urun_adi" class="col-sm-2 col-form-label">Ürün Adı</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="ayar_anahtarkelime" name="ayar_anahtarkelime" value="<?php echo $ayar['ayar_anahtarkelime'] ?>" placeholder="Web sayfanızın anahtar kelimelerini giriniz">
+                  <input type="text" class="form-control" id="urun_adi" name="urun_adi" value="<?php echo $satir['urun_adi'] ?>">
                 </div>
               </div>
 
               <div class="form-group row">
-                <label for="ayar_facebook" class="col-sm-2 col-form-label">Facebook</label>
+                <label for="urun_fiyat" class="col-sm-2 col-form-label">Fiyatı</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="ayar_facebook" name="ayar_facebook" value="<?php echo $ayar['ayar_facebook'] ?>" placeholder="Varsa facebook adresini giriniz">
+                  <input type="text" class="form-control" id="urun_fiyat" name="urun_fiyat" value="<?php echo $satir['urun_fiyat'] ?>">
                 </div>
               </div>
 
               <div class="form-group row">
-                <label for="ayar_x" class="col-sm-2 col-form-label">X</label>
+                <label for="urun_indirim" class="col-sm-2 col-form-label">İndirim (%)</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="ayar_x" name="ayar_x" value="<?php echo $ayar['ayar_x'] ?>" placeholder="Varsa X adresinizi giriniz">
+                  <input type="text" class="form-control" id="urun_indirim" name="urun_indirim" value="<?php echo $satir['urun_indirim'] ?>">
                 </div>
               </div>
 
               <div class="form-group row">
-                <label for="ayar_instagram" class="col-sm-2 col-form-label">Instagram</label>
+                <label for="urun_marka" class="col-sm-2 col-form-label">Marka</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="ayar_instagram" name="ayar_instagram" value="<?php echo $ayar['ayar_instagram'] ?>" placeholder="Varsa Instagram adresinizi giriniz">
+                  <input type="text" class="form-control" id="urun_marka" name="urun_marka" value="<?php echo $satir['urun_marka'] ?>">
                 </div>
               </div>
-
-              <div class="form-group row">
-                <label for="ayar_youtube" class="col-sm-2 col-form-label">YouTube</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="ayar_youtube" name="ayar_youtube" value="<?php echo $ayar['ayar_youtube'] ?>" placeholder="Varsa YouTube adresinizi giriniz">
+             
+             <?php
+              if ($satir['urun_id'] > 0) {
+              ?>
+                <div class="form-group row">
+                  <label for="urun_gorulmesayisi" class="col-sm-2 col-form-label">Görülme Sayısı</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" disabled id="urun_gorulmesayisi" value="<?php echo $satir['urun_gorulmesayisi'] ?>">
+                  </div>
                 </div>
-              </div>
 
-              <div class="form-group row">
-                <label for="ayar_msunucu" class="col-sm-2 col-form-label">Mail Sunucusu</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="ayar_msunucu" name="ayar_msunucu" value="<?php echo $ayar['ayar_msunucu'] ?>" placeholder="Mail sunucu adresini giriniz">
+                <div class="form-group row">
+                  <label for="urun_eklemetarihi" class="col-sm-2 col-form-label">Ekleme Tarihi</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" disabled id="urun_eklemetarihi" value="<?php echo $satir['urun_eklemetarihi'] ?>">
+                  </div>
                 </div>
-              </div>
-
+              <?php
+              }
+              ?>
+              
+              <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
               <div class="form-group row">
-                <label for="ayar_mport" class="col-sm-2 col-form-label">Sunucu Portu</label>
-                <div class="col-sm-10">
-                  <input type="number" class="form-control" id="ayar_mport" name="ayar_mport" value="<?php echo $ayar['ayar_mport'] ?>" placeholder="Mail Sunucu Portunu giriniz">
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <label for="ayar_madres" class="col-sm-2 col-form-label">Mail Adresi</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="ayar_madres" name="ayar_madres" value="<?php echo $ayar['ayar_madres'] ?>" placeholder="Mail adresinizi giriniz">
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <label for="ayar_msifre" class="col-sm-2 col-form-label">Şifre</label>
-                <div class="col-sm-10">
-                  <input type="password" class="form-control" id="ayar_msifre" name="ayar_msifre" placeholder="Mail şifrenizi giriniz">
+                <label for="urun_aciklama" class="col-sm-2 col-form-label">Açıklama</label>
+                <div class="col-sm-12">
+                  <textarea class="form-control" rows="15" id="urun_aciklama" name="urun_aciklama"><?php echo $satir['urun_aciklama'] ?></textarea>
                 </div>
               </div>
 
