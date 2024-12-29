@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include "baglan.php";
 
 $ayar = $db->prepare("SELECT * FROM ayar");
@@ -249,6 +250,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <a href="urun_liste.php" class="nav-link <?php MenuClass('urun_liste') ?>">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Ürün Listesi</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="urun_kategori.php" class="nav-link <?php MenuClass('urun_kategori') ?>">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Kategoriler</p>
                   </a>
                 </li>
               </ul>
