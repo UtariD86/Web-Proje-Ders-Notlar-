@@ -91,34 +91,13 @@ include "ust.php";
 		</div>
 		<div class="product-slider owl-carousel">
 			<?php
+			include "fonksiyon.php";
+
 			$sorgu = $db->prepare('SELECT * FROM urun WHERE urun_vitrin=1 ORDER BY RAND() LIMIT 20');
 			$sorgu->execute();
 
 			while ($satir = $sorgu->fetch(PDO::FETCH_ASSOC)) {
-			?>
-				<div class="product-item">
-					<div class="pi-pic">
-						<img src="./img/product/1.jpg" alt="">
-						<div class="pi-links">
-							<a href="#" class="add-card"><i class="flaticon-bag"></i><span>Sepet</span></a>
-							<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-						</div>
-					</div>
-					<div class="pi-text">
-					<h6>
-						<?php
-						if ($satir['urun_indirim'] > 0) {
-							echo "<del>" .
-								number_format($satir['urun_fiyat'], 2, ',', '.') . "TL</del><br>" .
-								number_format($satir['urun_fiyat'] - $satir['urun_fiyat'] * $satir['urun_indirim'] / 100, 2, ',', '.') . "TL";
-						} else
-							echo number_format($satir['urun_fiyat'], 2, ',', '.') . "TL";
-						?>
-						</h6>
-						<p><?php echo $satir['urun_adi'] ?></p>
-					</div>
-				</div>
-			<?php
+				UrunListeKartiOlustur($satir);
 			}
 			?>
 		</div>
@@ -131,20 +110,18 @@ include "ust.php";
 <!-- Product filter section -->
 <section class="product-filter-section">
 	<div class="container">
-		<div class="section-title">
-			<h2>BROWSE TOP SELLING PRODUCTS</h2>
-		</div>
-		<ul class="product-filter-menu">
-			<li><a href="#">TOPS</a></li>
-			<li><a href="#">JUMPSUITS</a></li>
-			<li><a href="#">LINGERIE</a></li>
-			<li><a href="#">JEANS</a></li>
-			<li><a href="#">DRESSES</a></li>
-			<li><a href="#">COATS</a></li>
-			<li><a href="#">JUMPERS</a></li>
-			<li><a href="#">LEGGINGS</a></li>
+		<ul class="product-filter-menu text-center">
+			<?php
+			$sorgu = $db->prepare('SELECT * FROM urun_kategori WHERE kategori_ust_id=0 ORDER BY kategori_sira');
+			$sorgu->execute();
+
+			while ($satir = $sorgu->fetch(PDO::FETCH_ASSOC))
+				echo '<li><a id="kat_' . $satir['kategori_id'] . '" 
+							href="javascript:KategoriDetay(' . $satir['kategori_id'] . ');">'
+					. $satir['kategori_adi'] . '</a></li>';
+			?>
 		</ul>
-		<div class="row">
+		<div class="row" id="UrunListesi">
 			<div class="col-lg-3 col-sm-6">
 				<div class="product-item">
 					<div class="pi-pic">
@@ -160,119 +137,29 @@ include "ust.php";
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-3 col-sm-6">
-				<div class="product-item">
-					<div class="pi-pic">
-						<div class="tag-sale">ON SALE</div>
-						<img src="./img/product/6.jpg" alt="">
-						<div class="pi-links">
-							<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-							<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-						</div>
-					</div>
-					<div class="pi-text">
-						<h6>$35,00</h6>
-						<p>Black and White Stripes Dress</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-sm-6">
-				<div class="product-item">
-					<div class="pi-pic">
-						<img src="./img/product/7.jpg" alt="">
-						<div class="pi-links">
-							<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-							<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-						</div>
-					</div>
-					<div class="pi-text">
-						<h6>$35,00</h6>
-						<p>Flamboyant Pink Top </p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-sm-6">
-				<div class="product-item">
-					<div class="pi-pic">
-						<img src="./img/product/8.jpg" alt="">
-						<div class="pi-links">
-							<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-							<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-						</div>
-					</div>
-					<div class="pi-text">
-						<h6>$35,00</h6>
-						<p>Flamboyant Pink Top </p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-sm-6">
-				<div class="product-item">
-					<div class="pi-pic">
-						<img src="./img/product/9.jpg" alt="">
-						<div class="pi-links">
-							<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-							<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-						</div>
-					</div>
-					<div class="pi-text">
-						<h6>$35,00</h6>
-						<p>Flamboyant Pink Top </p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-sm-6">
-				<div class="product-item">
-					<div class="pi-pic">
-						<img src="./img/product/10.jpg" alt="">
-						<div class="pi-links">
-							<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-							<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-						</div>
-					</div>
-					<div class="pi-text">
-						<h6>$35,00</h6>
-						<p>Black and White Stripes Dress</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-sm-6">
-				<div class="product-item">
-					<div class="pi-pic">
-						<img src="./img/product/11.jpg" alt="">
-						<div class="pi-links">
-							<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-							<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-						</div>
-					</div>
-					<div class="pi-text">
-						<h6>$35,00</h6>
-						<p>Flamboyant Pink Top </p>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-3 col-sm-6">
-				<div class="product-item">
-					<div class="pi-pic">
-						<img src="./img/product/12.jpg" alt="">
-						<div class="pi-links">
-							<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-							<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-						</div>
-					</div>
-					<div class="pi-text">
-						<h6>$35,00</h6>
-						<p>Flamboyant Pink Top </p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="text-center pt-5">
-			<button class="site-btn sb-line sb-dark">LOAD MORE</button>
 		</div>
 	</div>
 </section>
 <!-- Product filter section end -->
+
+<script>
+	function KategoriDetay(KategoriID) {
+		//console.log(KategoriID);
+		$('.product-filter-menu li a').removeClass('bg-danger text-white');
+		$('#kat_' + KategoriID).addClass('bg-danger text-white');
+
+		$.ajax({
+				method: "POST",
+				url: "urun_listesi.php",
+				data: {
+					KategoriID: KategoriID
+				}
+			})
+			.done(function(msg) {
+				$('#UrunListesi').html(msg);
+			});
+	}
+</script>
 
 <?php
 include "alt.php";

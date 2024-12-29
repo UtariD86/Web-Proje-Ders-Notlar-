@@ -52,7 +52,7 @@ $ayar = $ayar->fetch(PDO::FETCH_ASSOC);
 				<div class="row">
 					<div class="col-lg-2 text-center text-lg-left">
 						<!-- logo -->
-						<a href="./index.html" class="site-logo">
+						<a href="./" class="site-logo">
 							<img src="img/logo.png" alt="">
 						</a>
 					</div>
@@ -84,45 +84,27 @@ $ayar = $ayar->fetch(PDO::FETCH_ASSOC);
 			<div class="container">
 				<!-- menu -->
 				<ul class="main-menu">
-
+					<li><a href="./">Ana sayfa</a></li>
 					<?php
 					$sorgu = $db->prepare('SELECT * FROM urun_kategori WHERE kategori_ust_id=0 ORDER BY kategori_sira');
 					$sorgu->execute();
 
 					while ($satir = $sorgu->fetch(PDO::FETCH_ASSOC)) {
-						echo '<li><a href="#">' . $satir['kategori_adi'] . '</a><ul class="sub-menu">';
-						__________________________________
-						echo '</ul></li>';
-					}
+						echo '<li><a href="#">' . $satir['kategori_adi'] . '</a>';
+						$sorgu2 = $db->prepare('SELECT * FROM urun_kategori WHERE kategori_ust_id=? ORDER BY kategori_sira');
+						$sorgu2->execute(array($satir['kategori_id']));
 
+						if ($sorgu2->rowCount() > 0) {
+							echo '<ul class="sub-menu">';
+							while ($satir2 = $sorgu2->fetch(PDO::FETCH_ASSOC)) {
+								echo '<li><a href="#">' . $satir2['kategori_adi'] . '</a></li>';
+							}
+							echo '</ul>';
+						}
+						echo '</li>';
+					}
 					?>
-					<!--
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Women</a></li>
-					<li><a href="#">Men</a></li>
-					<li><a href="#">Jewelry
-							<span class="new">New</span>
-						</a></li>
-					<li><a href="#">Shoes</a>
-						<ul class="sub-menu">
-							<li><a href="#">Sneakers</a></li>
-							<li><a href="#">Sandals</a></li>
-							<li><a href="#">Formal Shoes</a></li>
-							<li><a href="#">Boots</a></li>
-							<li><a href="#">Flip Flops</a></li>
-						</ul>
-					</li>
-					<li><a href="#">Pages</a>
-						<ul class="sub-menu">
-							<li><a href="./product.html">Product Page</a></li>
-							<li><a href="./category.html">Category Page</a></li>
-							<li><a href="./cart.html">Cart Page</a></li>
-							<li><a href="./checkout.html">Checkout Page</a></li>
-							<li><a href="./contact.html">Contact Page</a></li>
-						</ul>
-					</li>
-					<li><a href="#">Blog</a></li>
--->
+					<li><a href="iletisim.php">İletişim</a></li>
 				</ul>
 			</div>
 		</nav>
