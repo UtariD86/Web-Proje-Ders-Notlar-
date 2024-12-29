@@ -34,82 +34,165 @@
           </div>
           <div class="card-body">
 
-            <form action="urun_kaydet.php" method="POST">
-
-              <input type="hidden" name="urun_id" value="<?php echo $satir['urun_id'] ?>">
-
-              <div class="form-group row">
-                <label for="urun_kategori_id" class="col-sm-2 col-form-label">Kategori ID</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="urun_kategori_id" name="urun_kategori_id" value="<?php echo $satir['urun_kategori_id'] ?>">
-                </div>
+            <div class="card card-primary card-outline card-outline-tabs">
+              <div class="card-header p-0 border-bottom-0">
+                <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Genel Bilgiler</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">Stok Bilgileri</a>
+                  </li>
+                </ul>
               </div>
+              <div class="card-body">
+                <div class="tab-content" id="custom-tabs-four-tabContent">
+                  <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
 
-              <div class="form-group row">
-                <label for="urun_barkod" class="col-sm-2 col-form-label">Barkod</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="urun_barkod" name="urun_barkod" value="<?php echo $satir['urun_barkod'] ?>">
-                </div>
-              </div>
+                    <form action="urun_kaydet.php" method="POST">
 
-              <div class="form-group row">
-                <label for="urun_adi" class="col-sm-2 col-form-label">Ürün Adı</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="urun_adi" name="urun_adi" value="<?php echo $satir['urun_adi'] ?>">
-                </div>
-              </div>
+                      <input type="hidden" name="urun_id" value="<?php echo $satir['urun_id'] ?>">
 
-              <div class="form-group row">
-                <label for="urun_fiyat" class="col-sm-2 col-form-label">Fiyatı</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="urun_fiyat" name="urun_fiyat" value="<?php echo $satir['urun_fiyat'] ?>">
-                </div>
-              </div>
+                      <div class="form-group row">
+                        <label for="urun_kategori_id" class="col-sm-2 col-form-label">Kategori ID</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="urun_kategori_id" name="urun_kategori_id" value="<?php echo $satir['urun_kategori_id'] ?>">
+                        </div>
+                      </div>
 
-              <div class="form-group row">
-                <label for="urun_indirim" class="col-sm-2 col-form-label">İndirim (%)</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="urun_indirim" name="urun_indirim" value="<?php echo $satir['urun_indirim'] ?>">
-                </div>
-              </div>
+                      <div class="form-group row">
+                        <label for="urun_barkod" class="col-sm-2 col-form-label">Barkod</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="urun_barkod" name="urun_barkod" value="<?php echo $satir['urun_barkod'] ?>">
+                        </div>
+                      </div>
 
-              <div class="form-group row">
-                <label for="urun_marka" class="col-sm-2 col-form-label">Marka</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="urun_marka" name="urun_marka" value="<?php echo $satir['urun_marka'] ?>">
-                </div>
-              </div>
-             
-             <?php
-              if ($satir['urun_id'] > 0) {
-              ?>
-                <div class="form-group row">
-                  <label for="urun_gorulmesayisi" class="col-sm-2 col-form-label">Görülme Sayısı</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" disabled id="urun_gorulmesayisi" value="<?php echo $satir['urun_gorulmesayisi'] ?>">
+                      <div class="form-group row">
+                        <label for="urun_adi" class="col-sm-2 col-form-label">Ürün Adı</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="urun_adi" name="urun_adi" value="<?php echo $satir['urun_adi'] ?>">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label for="urun_fiyat" class="col-sm-2 col-form-label">Fiyatı</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="urun_fiyat" name="urun_fiyat" value="<?php echo $satir['urun_fiyat'] ?>">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label for="urun_indirim" class="col-sm-2 col-form-label">İndirim (%)</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="urun_indirim" name="urun_indirim" value="<?php echo $satir['urun_indirim'] ?>">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label for="urun_marka" class="col-sm-2 col-form-label">Marka</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="urun_marka" name="urun_marka" value="<?php echo $satir['urun_marka'] ?>">
+                        </div>
+                      </div>
+
+                      <?php
+                      if ($satir['urun_id'] > 0) {
+                      ?>
+                        <div class="form-group row">
+                          <label for="urun_gorulmesayisi" class="col-sm-2 col-form-label">Görülme Sayısı</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" disabled id="urun_gorulmesayisi" value="<?php echo $satir['urun_gorulmesayisi'] ?>">
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <label for="urun_eklemetarihi" class="col-sm-2 col-form-label">Ekleme Tarihi</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" disabled id="urun_eklemetarihi" value="<?php echo $satir['urun_eklemetarihi'] ?>">
+                          </div>
+                        </div>
+                      <?php
+                      }
+                      ?>
+
+                      <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+                      <div class="form-group row">
+                        <label for="urun_aciklama" class="col-sm-2 col-form-label">Açıklama</label>
+                        <div class="col-sm-12">
+                          <textarea class="form-control" rows="15" id="urun_aciklama" name="urun_aciklama"><?php echo $satir['urun_aciklama'] ?></textarea>
+                        </div>
+                      </div>
+
+                      <input type="submit" class="btn btn-outline-primary btn-block" value="Kaydet">
+                    </form>
+
+                  </div>
+                  <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
+
+                    <table class="table">
+                      <tr>
+                        <th>#</th>
+                        <th>Renk</th>
+                        <th>Beden</th>
+                        <th>Adet</th>
+                        <th></th>
+                      </tr>
+                      <?php
+                      $stoks = $db->prepare('SELECT * FROM urun_stok WHERE urun_id=?');
+                      $stoks->execute(array($satir['urun_id']));
+                      $sira = 0;
+                      while ($stok = $stoks->fetch(PDO::FETCH_ASSOC)) {
+                        //print_r($stok);
+                      ?>
+                        <tr>
+                          <td><?php echo ++$sira ?></td>
+                          <td><input type="text" id="stok_renk_<?php echo $stok['stok_id'] ?>" value="<?php echo $stok['stok_renk'] ?>"></td>
+                          <td><input type="text" id="stok_beden_<?php echo $stok['stok_id'] ?>" value="<?php echo $stok['stok_beden'] ?>"></td>
+                          <td><input type="text" id="stok_adet_<?php echo $stok['stok_id'] ?>" value="<?php echo $stok['stok_adet'] ?>"></td>
+                          <td>
+                            <button type="button" onclick="StokKaydet(<?php echo $stok['stok_id'] ?>)" class="btn btn-block btn-outline-primary btn-sm">
+                              <i class="fas fa-save"></i>Kaydet
+                            </button>
+                            <span id="StokKaydetSonuc_<?php echo $stok['stok_id'] ?>"></span>
+                          </td>
+                        </tr>
+                      <?php
+                      }
+                      ?>
+                    </table>
+                    <script>
+                      function StokKaydet(stok_id) {
+                        var stok_renk = $('#stok_renk_' + stok_id).val();
+                        var stok_beden = $('#stok_beden_' + stok_id).val();
+                        var stok_adet = $('#stok_adet_' + stok_id).val();
+                        console.log('stok_renk:' + stok_renk);
+                        console.log('stok_beden:' + stok_beden);
+                        console.log('stok_adet:' + stok_adet);
+                        console.log(stok_id);
+
+                        $.ajax({
+                            method: "POST",
+                            url: "urun_stok_kaydet.php",
+                            data: {
+                              stok_id: stok_id,
+                              stok_renk: stok_renk,
+                              stok_beden: stok_beden,
+                              stok_adet: stok_adet
+                            }
+                          })
+                          .done(function(msg) {
+                            //alert("Data Saved: " + msg);
+                            $('#StokKaydetSonuc_' + stok_id).html(msg);
+                          });
+
+                      }
+                    </script>
                   </div>
                 </div>
-
-                <div class="form-group row">
-                  <label for="urun_eklemetarihi" class="col-sm-2 col-form-label">Ekleme Tarihi</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" disabled id="urun_eklemetarihi" value="<?php echo $satir['urun_eklemetarihi'] ?>">
-                  </div>
-                </div>
-              <?php
-              }
-              ?>
-              
-              <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
-              <div class="form-group row">
-                <label for="urun_aciklama" class="col-sm-2 col-form-label">Açıklama</label>
-                <div class="col-sm-12">
-                  <textarea class="form-control" rows="15" id="urun_aciklama" name="urun_aciklama"><?php echo $satir['urun_aciklama'] ?></textarea>
-                </div>
               </div>
+              <!-- /.card -->
+            </div>
 
-              <input type="submit" class="btn btn-outline-primary btn-block" value="Kaydet">
-            </form>
           </div>
         </div>
       </div><!-- /.container-fluid -->
