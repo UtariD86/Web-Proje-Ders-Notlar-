@@ -4,6 +4,12 @@ include "baglan.php";
 $ayar = $db->prepare("SELECT * FROM ayar");
 $ayar->execute();
 $ayar = $ayar->fetch(PDO::FETCH_ASSOC);
+
+function MenuClass($sayfa, $class = 'active')
+{
+  if (strpos($_SERVER['SCRIPT_NAME'], $sayfa))
+    echo $class;
+}
 ?>
 <!DOCTYPE html>
 <!--
@@ -23,6 +29,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
 </head>
@@ -207,21 +217,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
                with font-awesome or any other icon font library -->
 
             <li class="nav-item">
-              <a href="./" class="nav-link">
+              <a href="./" class="nav-link <?php MenuClass('index') ?>">
                 <i class="nav-icon fas fa-home"></i>
                 <p>Anasayfa</p>
               </a>
             </li>
 
             <li class="nav-item">
-              <a href="ayar.php" class="nav-link">
+              <a href="ayar.php" class="nav-link <?php MenuClass('ayar') ?>">
                 <i class="nav-icon fas fa-cogs"></i>
                 <p>Ayarlar</p>
               </a>
             </li>
 
-            <li class="nav-item menu-open">
-              <a href="#" class="nav-link active">
+            <li class="nav-item <?php MenuClass('urun_', 'menu-open') ?>">
+              <a href="#" class="nav-link <?php MenuClass('urun_') ?>">
                 <i class="nav-icon fas fa-cubes"></i>
                 <p>
                   Ürünler
@@ -230,13 +240,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="urun_detay.php" class="nav-link active">
+                  <a href="urun_detay.php" class="nav-link <?php MenuClass('urun_detay') ?>">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Yeni Ürün Ekle</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="urun_liste.php" class="nav-link">
+                  <a href="urun_liste.php" class="nav-link <?php MenuClass('urun_liste') ?>">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Ürün Listesi</p>
                   </a>
