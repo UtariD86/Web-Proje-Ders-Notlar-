@@ -1,77 +1,33 @@
-ayar.php
-
-Ayarları Görüntüleme ve Düzenleme Sayfası
-Bu dosya, yönetim panelinde ayarları görüntüleyebileceğiniz ve düzenleyebileceğiniz bir form oluşturur. İşleyişini adım adım açıklayalım:
-
-a. PHP Bağlantıları:
+### 1. **`include` ve Dosya Dahil Etme:**
 ```php
-
-<?php
 include "ust.php";
-?>
 ```
+- **Açıklama**: Bu satırda, PHP `include` komutuyla dış bir PHP dosyasını mevcut dosyaya dahil ediyoruz. `ust.php` dosyası genellikle başlık, menü gibi ortak HTML yapıları içerir. Bu sayede her sayfada bu yapıyı tekrar yazmak zorunda kalmayız.
+- **Kavram**: `include` komutu, belirtilen dosyayı çalıştırmak için kullanılır ve hata oluşursa devam etmeye devam eder.
 
-Bu satırda, üst kısmı (header, navbar vb.) dahil eden ust.php dosyası çağrılır.
-b. HTML Formu ve Veritabanı Verileri:
-
+### 2. **Form Elemanları ve `value` Özelliği:**
 ```php
-
-<form action="ayar_kaydet.php" method="POST">
-
-```
-
-Bu form, kullanıcının ayarları değiştirebileceği bir arayüz sunar.
-action="ayar_kaydet.php": Form gönderildiğinde, veriler ayar_kaydet.php dosyasına gönderilecektir.
-c. Form Alanları:
-Formda kullanıcıdan alınacak birkaç bilgi vardır. Örneğin:
-
-Başlık (ayar_baslik)
-Açıklama (ayar_aciklama)
-Anahtar Kelimeler (ayar_anahtarkelime)
-Sosyal medya bağlantıları (Facebook, Instagram, vb.)
-Mail Sunucu Ayarları (Mail sunucu adresi, port, kullanıcı adı, şifre vb.)
-Her bir form alanı, kullanıcıdan alınacak verileri input elemanları ile sağlar. Örneğin:
-
-```php
-
 <input type="text" class="form-control" id="ayar_baslik" name="ayar_baslik" value="<?php echo $ayar['ayar_baslik'] ?>" placeholder="Web sayfanızın başlığını giriniz">
-
 ```
+- **Açıklama**: Bu satırda bir HTML input elemanı kullanıyoruz. Buradaki `value` özelliği, formda bulunan bu alana, veritabanından çekilen verinin yerleştirilmesini sağlar. `<?php echo $ayar['ayar_baslik'] ?>` PHP kodu, veritabanından gelen başlık verisini alır ve bu alanda görüntüler. Kullanıcı mevcut başlık değerini değiştirebilir.
+- **Kavram**: `value` özelliği, form elemanının içeriğini belirler. PHP ile dinamik olarak değer yerleştirilebilir.
 
-Burada, veritabanından alınan mevcut başlık değeri (yani $ayar['ayar_baslik']) alana yerleştirilir, böylece kullanıcı mevcut başlığı görebilir ve değiştirebilir.
-d. Formu Gönderme:
-Form, kullanıcı "Kaydet" butonuna tıkladığında gönderilir ve veritabanına kaydedilmek üzere ayar_kaydet.php dosyasına yönlendirilir.
-
-------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-ayar_kaydet.php
-
-Ayarları Veritabanına Kaydetme
-Bu dosya, yukarıda düzenlenen ayarları alır ve veritabanına kaydeder. Şimdi adım adım işleyişi açıklayalım:
-
-a. Veritabanı Bağlantısı:
+### 3. **Veritabanı Bağlantısı:**
 ```php
-
 include "baglan.php";
-
 ```
-Bu satırda, veritabanı bağlantısı kuran baglan.php dosyası dahil edilir.
-b. POST Verilerini Alma:
-Form verileri $_POST süper globali aracılığıyla alınır. Bu veriler, kullanıcının formda yaptığı değişiklikleri içerir:
+- **Açıklama**: Bu satırda `baglan.php` dosyasını dahil ediyoruz. Bu dosya, veritabanına bağlanmayı sağlayacak bağlantı bilgilerini içerir (kullanıcı adı, şifre, veritabanı adı vb.). 
+- **Kavram**: Veritabanı bağlantısı genellikle `PDO` (PHP Data Objects) veya `mysqli` ile sağlanır.
 
+### 4. **Form Verilerini Alma:**
 ```php
-
 if (isset($_POST['ayar_baslik'], $_POST['ayar_aciklama'], ...)) {
-
 ```
+- **Açıklama**: Bu satır, form verilerinin gelip gelmediğini kontrol eder. Eğer kullanıcı formu doldurup göndermişse, PHP `$_POST` süper globali ile veriler alınır.
+- **Kavram**: **`$_POST`** süper globali, HTML form verilerini almak için kullanılır. Bu, form verilerinin URL'ye eklenmeden, güvenli bir şekilde gönderilmesini sağlar.
 
-Bu koşul, form verilerinin olup olmadığını kontrol eder. Eğer formdaki tüm veriler gelmişse, ayarları güncelleme işlemine geçilir.
-
-c. SQL Sorgusu Oluşturma:
-PHP ile dinamik bir UPDATE sorgusu oluşturuluyor:
-
+### 5. **PDO ve SQL Sorgusu:**
 ```php
-
 $SQL = "UPDATE ayar SET
 ayar_baslik=:ayar_baslik,
 ayar_aciklama=:ayar_aciklama,
@@ -83,64 +39,48 @@ ayar_youtube=:ayar_youtube,
 ayar_msunucu=:ayar_msunucu,
 ayar_mport=:ayar_mport,
 ayar_madres=:ayar_madres";
-
 ```
+- **Açıklama**: Burada **SQL UPDATE** sorgusu ile veritabanındaki `ayar` tablosunda bulunan veriler güncelleniyor. `:ayar_baslik`, `:ayar_aciklama` gibi parametreler, PDO kullanarak SQL enjeksiyonuna karşı güvenli bir şekilde bağlanmış parametrelerdir.
+- **Kavram**: **`PDO` (PHP Data Objects)**, PHP’de veritabanı bağlantısı kurmak ve veri işlemek için kullanılan bir sınıftır. SQL enjeksiyonunu engellemek için parametreli sorgular kullanılır.
 
-Bu sorgu, ayar tablosunda bulunan verileri günceller. :ayar_baslik, :ayar_aciklama gibi : ile başlayan parametreler, veritabanı sorgusuna parametre olarak eklenir.
-d. Veritabanına Gönderilecek Verilerin Hazırlanması:
-Formdan gelen veriler, bir associative array (anahtar-değer dizisi) olarak hazırlanır:
-
+### 6. **`execute` ve Veritabanına Veri Gönderme:**
 ```php
+$sorgu = $db->prepare($SQL);
+$sonuc = $sorgu->execute($SQL_array);
+```
+- **Açıklama**: Bu satırlarda PDO kullanılarak hazırlanmış SQL sorgusu (`prepare`), veritabanına gönderiliyor. Sorgu başarılı bir şekilde çalıştırıldığında (`execute`), işlem sonucu `$sonuc` değişkenine kaydedilir.
+- **Kavramlar**:
+  - **`prepare`**: SQL sorgusunu önceden hazırlayıp, parametreler ile güvenli hale getirir.
+  - **`execute`**: Hazırlanan sorguyu çalıştırarak, verileri veritabanına gönderir.
 
+### 7. **`fetch(PDO::FETCH_ASSOC)` Kavramı:**
+Veritabanından veri çekmek için kullanılan bir yöntemdir. Örneğin:
+```php
+$sorgu = $db->query("SELECT * FROM ayar");
+$ayar = $sorgu->fetch(PDO::FETCH_ASSOC);
+```
+- **Açıklama**: Bu satırda **`fetch`** metodu kullanılarak, sorgu sonuçları alınıyor ve **`PDO::FETCH_ASSOC`** ile dönen veri sadece sütun adlarını anahtar olarak içeren bir **associative array** (anahtar-değer dizisi) olarak döndürülür.
+- **Kavramlar**:
+  - **`fetch`**: Veritabanından gelen sonuçları alır ve her satırı bir dizi olarak döndürür.
+  - **`PDO::FETCH_ASSOC`**: Sonuçların sadece anahtar-değer dizisi olarak döndürülmesini sağlar, yani her sütunun adı dizi anahtarı olur.
+
+### 8. **Form Verilerinin Veritabanına Kaydedilmesi:**
+```php
 $SQL_array = array(
     'ayar_baslik' => $_POST['ayar_baslik'],
     'ayar_aciklama' => $_POST['ayar_aciklama'],
     ...
 );
-
 ```
+- **Açıklama**: Formdan gelen veriler, SQL sorgusunda parametre olarak kullanılmak üzere bir **associative array** şeklinde hazırlanır. Bu array, parametre adları ve form verilerinin eşleşmesini sağlar.
+- **Kavram**: **Associative Array** (Anahtar-Değer Dizisi) PHP’de verilerin anahtar ve değer şeklinde saklandığı veri yapısıdır.
 
-Burada her form verisi, SQL sorgusunda kullanılacak parametrelere bağlanır.
-
-e. Şifre Alanı:
-Eğer kullanıcı şifreyi değiştirmişse, şifre de SQL sorgusuna eklenir:
-
+### 9. **Yönlendirme (header):**
 ```php
-
-if ($_POST['ayar_msifre'] != "") {
-    $SQL .= ",ayar_msifre=:ayar_msifre";
-    $SQL_array['ayar_msifre'] = $_POST['ayar_msifre'];
-}
-
-```
-
-f. SQL Sorgusunu Çalıştırma:
-Sorgu hazırlanınca, prepare ve execute metotları ile çalıştırılır:
-
-```php
-
-$sorgu = $db->prepare($SQL);
-$sonuc = $sorgu->execute($SQL_array);
-
-```
-
-Bu adım, veritabanına bağlantı kurar ve sorguyu işler. Başarılı olursa, sonuç değişkeni ile başarı durumu kontrol edilebilir.
-
-g. Yönlendirme:
-Son olarak, işlem sonucuna göre kullanıcı ayar.php sayfasına yönlendirilir:
-
-```php
-
 header("Location:ayar.php?sonuc=" . $sonuc);
-
 ```
-
-Bu, sayfanın doğru şekilde yeniden yüklenmesini sağlar.
-
-Özetle:
-ayar.php dosyası, yönetim panelindeki ayarları düzenlemek için bir form sağlar.
-ayar_kaydet.php dosyası, kullanıcının yaptığı değişiklikleri alır ve bunları veritabanına kaydeder.
-Bu işlemde PDO kullanarak güvenli bir şekilde SQL sorguları çalıştırılır ve form verileri veritabanına eklenir.
+- **Açıklama**: İşlem tamamlandığında, kullanıcıyı başka bir sayfaya yönlendiren `header()` fonksiyonu kullanılır. Burada, işlem sonucunu `sonuc` parametresiyle URL’ye ekliyoruz.
+- **Kavram**: **`header()`** fonksiyonu, sayfa yönlendirmeleri ve HTTP başlıkları için kullanılır. Yönlendirme yapılırken önceki çıktı (HTML vs.) yapılmamalıdır.
 
 Veritabanı Tablosu (Ayarlar):
 Tablo adı: ayar
