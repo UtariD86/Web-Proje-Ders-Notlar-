@@ -1,0 +1,21 @@
+
+| Komut              | Açılımı                          | Amacı                                                     | Popüler Parametreler ve Açıklamaları                                                     |
+|--------------------|-----------------------------------|-----------------------------------------------------------|------------------------------------------------------------------------------------------|
+| **`ping`**         | Packet Internet Groper            | Hedef cihazla ağ bağlantısını test eder.                   | `-c NUM`: Belirtilen sayıda ping gönderir. `-i NUM`: Ping gönderme aralığını ayarlar.    |
+| **`traceroute`**   | Trace Route                       | Veri paketinin hedefe ulaşana kadar geçtiği yolları gösterir. | `-m NUM`: Maksimum yönlendirme sayısını belirtir. `-n`: IP adreslerini çözümlemez.        |
+| **`ifconfig`**     | Interface Configuration           | Ağ arayüzlerinin yapılandırılmasını gösterir veya değiştirir. | `-a`: Tüm ağ arayüzlerini gösterir. `up` ve `down`: Arayüzü etkinleştirir veya kapatır.    |
+| **`netstat`**      | Network Statistics                | Ağ bağlantılarını ve portları gösterir.                    | `-t`: TCP bağlantılarını gösterir. `-u`: UDP bağlantılarını gösterir. `-l`: Dinleyen portları gösterir. |
+| **`arp`**          | Address Resolution Protocol       | IP adreslerini MAC adreslerine dönüştürür.                 | `-a`: Tüm ARP önbelleklerini listeler. `-d`: Belirtilen IP adresini ARP önbelleğinden siler.|
+| **`ip`**           | IP                                 | IP yapılandırmasıyla ilgili işlemleri yönetir.             | `link`: Ağ bağlantılarını gösterir. `addr`: IP adreslerini gösterir. `route`: Yönlendirmeleri gösterir. |
+| **`nslookup`**     | Name Server Lookup                | DNS sorgulama yapar.                                       | `-type=TYPE`: Belirtilen sorgu türüyle (A, MX, CNAME vb.) sorgu yapar.                     |
+| **`whois`**        | Whois                             | Alan adı ve IP adresi ile ilgili kayıt bilgilerini sorgular. | `-h HOST`: Belirtilen Whois sunucusuna sorgu gönderir.                                      |
+| **`wget`**         | Web Get                           | İnternetten dosya indirir.                                 | `-O FİLE`: İndirilen dosyayı belirtilen dosya adına kaydeder. `-c`: Devam eden indirmeyi sürdürür.|
+| **`curl`**         | Client URL                        | URL üzerinden veri almak veya göndermek için kullanılır.    | `-O`: Dosyayı belirtilen isme indirir. `-I`: HTTP başlık bilgilerini gösterir.             |
+| **`nmap`**         | Network Mapper                    | Ağdaki cihazları ve servisleri tarar.                      | `-sP`: Ping taraması yapar. `-p PORT`: Belirtilen portu tarar. `-A`: Ayrıntılı tarama yapar.|
+| **`netdiscover`**  | Net Discover                      | Ağdaki aktif cihazları keşfeder.                           | `-r RANGE`: Belirtilen IP aralığını tarar. `-p`: Belirli bir portu tarar.                  |
+| **`tcpdump`**      | TCP Dump                          | Ağdaki veri paketlerini yakalar ve analiz eder.             | `-i INTERFACE`: Belirtilen ağ arayüzünü kullanır. `-n`: Adres çözümlemesi yapmaz.          |
+| **`mtr`**          | My Traceroute                     | Ping ve traceroute komutlarının birleşimi.                 | `-r`: Yol boyunca yalnızca rotaları gösterir. `-c NUM`: Belirtilen sayıda test yapar.      |
+| **`iwconfig`**     | Wireless Configuration            | Kablosuz ağ bağlantılarının ayarlarını gösterir veya değiştirir. | `essid`: Kablosuz ağ adı. `mode`: Bağlantı modunu ayarlar (ör. Ad-Hoc, Managed).         |
+| **`ss`**           | Socket Stat                        | Ağ soketlerini görüntüler.                                 | `-t`: TCP bağlantıları. `-u`: UDP bağlantıları. `-l`: Dinleyen soketler.                 |
+| **`dig`**          | Domain Information Groper         | DNS sorgulama yapar.                                       | `-t TYPE`: Belirtilen sorgu türü ile sorgu yapar. `+short`: Daha kısa yanıt verir.         |
+| **`telnet`**       | Telnet                            | Uzak sunuculara bağlanmak için kullanılır.                  | `-l USERNAME`: Kullanıcı adıyla giriş yapar. `-p PORT`: Belirtilen port üzerinden bağlanır. |

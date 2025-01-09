@@ -1,0 +1,26 @@
+
+| Komut           | Açılımı                          | Amacı                                                   | Popüler Parametreler ve Açıklamaları                                                      |
+|-----------------|-----------------------------------|---------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| **`touch`**     | Touch                            | Boş bir dosya oluşturur veya var olan dosyanın zaman damgasını değiştirir. | `-c`: Dosya varsa oluşturmaz. `-t`: Zaman damgasını manuel olarak belirler.              |
+| **`cat`**       | Concatenate                       | Dosya içeriğini ekrana yazdırır veya birleştirir.         | `-n`: Satır numarasını ekler. `-b`: Boş satırlara satır numarası eklemez.                  |
+| **`cp`**        | Copy                              | Dosya veya dizin kopyalar.                              | `-r`: Dizinleri rekurziv olarak kopyalar. `-u`: Yalnızca daha eski dosyaları kopyalar.    |
+| **`mv`**        | Move                              | Dosya veya dizin taşır veya yeniden adlandırır.          | `-i`: Var olan dosya üzerine yazmadan önce sorar. `-u`: Yalnızca daha eski dosyaları taşır.|
+| **`rm`**        | Remove                            | Dosya veya dizin siler.                                 | `-r`: Dizinleri rekurziv olarak siler. `-f`: Zorla siler (silinemez dosyaları da).        |
+| **`ln`**        | Link                              | Dosya için bağlantı (link) oluşturur.                    | `-s`: Symbolik bağlantı oluşturur. `-f`: Mevcut bağlantıyı zorla siler.                    |
+| **`chmod`**     | Change Mode                       | Dosya/dizin izinlerini değiştirir.                      | `+x`: Çalıştırma izni ekler. `-r`: Okuma iznini kaldırır. `u+w`: Kullanıcıya yazma izni ekler. |
+| **`chown`**     | Change Owner                      | Dosya/dizin sahibini değiştirir.                         | `-R`: Rekürsif olarak tüm alt dosyalarla birlikte çalışır. `kullanıcı:grup`: Sahibi ve grubu belirler. |
+| **`chgrp`**     | Change Group                      | Dosya/dizin grubunu değiştirir.                         | `-R`: Rekürsif olarak tüm alt dosyalarla birlikte çalışır.                                  |
+| **`stat`**      | Status                            | Dosyanın detaylı bilgilerini gösterir.                   | Yok.                                                                                       |
+| **`find`**      | Find                              | Belirtilen kriterlere göre dosya arar.                  | `-name PATTERN`: Belirli bir desene uyan dosyaları bulur. `-type f`: Yalnızca dosyaları arar. |
+| **`head`**      | Head                              | Dosyanın baş kısmındaki satırları gösterir.             | `-n NUM`: Belirtilen sayıda satırı gösterir.                                               |
+| **`tail`**      | Tail                              | Dosyanın son kısmındaki satırları gösterir.             | `-n NUM`: Belirtilen sayıda satırı gösterir. `-f`: Dosyadaki yeni satırları takip eder.     |
+| **`more`**      | More                              | Dosya içeriğini sayfa sayfa görüntüler.                 | `+NUM`: Belirtilen satırdan başlar.                                                         |
+| **`less`**      | Less                              | Dosya içeriğini ileri-geri görüntüler.                  | `-N`: Satır numaralarını gösterir.                                                         |
+| **`tee`**       | Tee                               | Standart girdiği hem ekrana hem de dosyaya yazdırır.    | `-a`: Dosyaya ekler, üzerine yazmaz.                                                      |
+| **`tar`**       | Tape Archive                      | Dosya sıkıştırma ve arşivleme aracı.                    | `-c`: Yeni bir arşiv oluşturur. `-x`: Arşivden çıkarma işlemi yapar. `-f`: Dosya adını belirtir. |
+| **`zip`**       | Zip                               | Dosya sıkıştırma aracı.                                  | `-r`: Dizinleri rekurziv olarak sıkıştırır. `-e`: Şifre ekler.                            |
+| **`unzip`**     | Unzip                             | Zip dosyasını açar.                                     | `-d DİZİN`: Belirtilen dizine çıkarma yapar.                                               |
+| **`bzip2`**     | Bzip2                             | Dosya sıkıştırma aracı.                                  | `-d`: Dosyayı açar. `-k`: Orijinal dosyayı korur.                                          |
+| **`gzip`**      | Gzip                              | Dosya sıkıştırma aracı.                                  | `-d`: Dosyayı açar. `-r`: Dizinleri rekurziv olarak sıkıştırır.                             |
+| **`split`**     | Split                             | Dosyayı parçalara böler.                                 | `-l NUM`: Her bir parça için satır sayısı belirtir.                                        |
+| **`shred`**     | Shred                             | Dosyayı güvenli bir şekilde siler.                       | `-u`: Silme işleminden sonra dosyayı yok eder.                                             |

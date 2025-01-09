@@ -1,0 +1,22 @@
+
+| Komut           | Açılımı                          | Amacı                                                   | Popüler Parametreler ve Açıklamaları                                                      |
+|-----------------|-----------------------------------|---------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| **`adduser`**    | Add User                          | Yeni bir kullanıcı ekler.                               | `--disabled-password`: Şifresiz kullanıcı ekler. `--gecos "info"`: Kullanıcı bilgisi ekler. |
+| **`userdel`**    | User Delete                       | Kullanıcıyı sistemden siler.                            | `--remove`: Kullanıcıyı ve ev dizinini siler.                                               |
+| **`groupadd`**   | Group Add                         | Yeni bir grup ekler.                                    | `--gid GID`: Gruplara özel GID belirler. `--system`: Sistem grubu ekler.                   |
+| **`usermod`**    | User Modify                       | Kullanıcı bilgisini değiştirir.                         | `-aG GRUP`: Kullanıcıyı gruba ekler. `-d DİZİN`: Kullanıcının ana dizinini değiştirir.     |
+| **`chown`**      | Change Owner                      | Dosya veya dizinin sahibini değiştirir.                 | `-R`: Rekürsif olarak tüm alt dosyalarla birlikte çalışır. `kullanıcı:grup`: Sahibi ve grubu belirler. |
+| **`chmod`**      | Change Mode                       | Dosya ve dizinlerin erişim izinlerini değiştirir.        | `-R`: Rekürsif olarak tüm alt dosyalarla birlikte çalışır. `+x`: Çalıştırma izni ekler. `-r`: Okuma iznini kaldırır. |
+| **`passwd`**     | Password                          | Kullanıcının şifresini değiştirir.                      | `-l`: Kullanıcının şifresini kilitler. `-u`: Şifreyi yeniden aktif eder.                   |
+| **`chage`**      | Change Age                        | Kullanıcının şifre yenileme politikasını değiştirir.     | `-l`: Kullanıcı şifre politikalarını görüntüler. `-M DAYS`: Maksimum şifre süresi belirler. |
+| **`groups`**     | Groups                            | Kullanıcının üye olduğu grupları listeler.              | `kullanıcı`: Belirli bir kullanıcının gruplarını gösterir.                                |
+| **`id`**         | ID                                | Kullanıcı ID’si, grup ID’si ve diğer bilgileri gösterir. | `-u`: Kullanıcı ID’sini gösterir. `-g`: Grup ID’sini gösterir.                              |
+| **`su`**         | Switch User                       | Kullanıcıyı değiştirir.                                 | `-l`: Giriş yaparken tüm ortam değişkenlerini yükler. `kullanıcı`: Belirtilen kullanıcıya geçiş yapar. |
+| **`sudo`**       | Super User Do                     | Yönetici yetkileri ile komut çalıştırır.                | `-u kullanıcı`: Belirtilen kullanıcı olarak çalıştırır. `-s`: Bir komut kabuğu başlatır.   |
+| **`whoami`**     | Who Am I                          | Aktif kullanıcıyı gösterir.                             | Yok.                                                                                       |
+| **`umask`**      | User Mask                         | Yeni dosya oluşturulurken varsayılan izinleri belirler.  | `0002`: Dosya izinlerini belirler.                                                         |
+| **`setfacl`**    | Set File Access Control Lists     | Dosya erişim kontrol listelerini ayarlar.               | `-m`: Erişim kuralı ekler. `-x`: Erişim kuralı siler.                                      |
+| **`getfacl`**    | Get File Access Control Lists     | Dosyanın erişim kontrol listesini gösterir.             | `-n`: Erişim sahiplerini isimsiz olarak gösterir.                                          |
+| **`groups`**     | Groups                            | Kullanıcının üye olduğu grupları gösterir.              | `kullanıcı`: Belirli bir kullanıcının gruplarını gösterir.                                |
+| **`umount`**     | Unmount                           | Bağlı bir dosya sistemini çıkartır.                     | `-l`: Bağlantıyı gecikmeli olarak çıkarır.                                                 |
+| **`chmod`**      | Change Mode                       | Dosya/dizin izinlerini değiştirir.                      | `u+x`: Kullanıcıya çalıştırma izni ekler. `g-r`: Gruba okuma iznini kaldırır.             |
